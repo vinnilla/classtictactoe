@@ -8,21 +8,25 @@ var htmlBoard = document.getElementsByClassName('square');
 //set up click listeners
 for (var i=0; i<board.length; i++) {
 	htmlBoard[i].addEventListener('click', function(e) {
-		console.log(e.target);
-		//loop through squares to check which node was clicked
-		for (var j=0; j<board.length; j++){
-			if (htmlBoard[j] === e.target) {
-				//check if board index already has something; 
-				if (board[j] == '') {
-					board[j] = turn;
-					//update board
-					drawBoard();
-					//switch turn
-					switchTurn();
-				}
-			}
+		var index = getSquareIndex(e.target);
+		if (board[index] == '') {
+			board[index] = turn;
+			//update board
+			drawBoard();
+			//switch turn
+			switchTurn();	
 		}
 	});
+}
+
+function getSquareIndex(target) {
+	//loop through squares to check which node was clicked
+	for (var j=0; j<board.length; j++){
+		//check if the current iterated square is the square that was clicked
+		if (htmlBoard[j] === target) {
+			return j;//return index
+		}
+	}
 }
 
 //drawing model to screen
@@ -40,6 +44,10 @@ function switchTurn() {
 	else {
 		turn = 'x';
 	}
+}
+
+function refreshPage() {
+	location.reload();
 }
 
 drawBoard();
