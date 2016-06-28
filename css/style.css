@@ -3,6 +3,10 @@ body {
 	margin-top:50px;
 }
 
+button {
+	margin-top:5px;
+}
+
 .square {
 	border: 1px solid black;
 	width:50px;

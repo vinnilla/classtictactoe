@@ -4,6 +4,7 @@ var turn = 'x';
 
 //selectors
 var htmlBoard = document.getElementsByClassName('square');
+var resetButton = document.getElementById('reset');
 
 //set up click listeners
 for (var i=0; i<board.length; i++) {
@@ -20,6 +21,16 @@ for (var i=0; i<board.length; i++) {
 		}
 	});
 }
+
+resetButton.addEventListener('click', function(e) {
+	//iterate through board array and reset it
+	for (var i=0; i<board.length; i++) {
+		board[i] = '';
+	}
+	drawBoard();
+	//set turn back to x
+	turn = 'x';
+})
 
 function getSquareIndex(target) {
 	//loop through squares to check which node was clicked
@@ -65,10 +76,6 @@ function checkWin() {
 			window.alert(turn + ' Wins!');
 		}
 	}
-}
-
-function refreshPage() {
-	location.reload();
 }
 
 drawBoard();
